@@ -1,0 +1,414 @@
+// Source of truth: docs/04-database-schema.md, refined per docs/19-build-phases.md
+// ("Prisma Schema — refinements vs. docs/04"). Table/column names are @map'd to the
+// exact snake_case names docs/04 specifies; Prisma-side fields stay camelCase per
+// docs/18's TypeScript naming conventions.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../../generated/prisma"
+  // Explicit: Prisma's tsconfig-based auto-detection produced ESM output
+  // (`import.meta.url`) despite this being a CommonJS Nest project (root
+  // package.json has no "type" field = commonjs), which crashed at runtime
+  // ("exports is not defined in ES module scope"). Forcing cjs here matches
+  // what `nest build`/`tsc` actually emit for the rest of the project.
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ScanStatus {
+  processing
+  completed
+  failed
+}
+
+enum SubscriptionPlan {
+  free
+  pro
+}
+
+enum SubscriptionStatus {
+  active
+  canceled
+  expired
+  past_due
+}
+
+enum DevicePlatform {
+  ios
+  android
+}
+
+enum RoutineTimeOfDay {
+  morning
+  night
+}
+
+enum MessageRole {
+  user
+  assistant
+  system
+}
+
+enum NotificationType {
+  daily_scan_reminder
+  morning_routine
+  night_routine
+  weekly_summary
+  achievement
+}
+
+// Thin Clerk mirror (docs/19): Clerk owns credentials/sessions/OAuth, this table
+// exists so the rest of the schema has a stable local userId to key off of.
+model User {
+  id           String    @id @default(uuid())
+  clerkId      String    @unique @map("clerk_id")
+  email        String    @unique
+  fullName     String?   @map("full_name")
+  profileImage String?   @map("profile_image")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  deletedAt    DateTime? @map("deleted_at")
+
+  profile           UserProfile?
+  settings          UserSettings?
+  subscription      Subscription?
+  scans             SkinScan[]
+  routines          Routine[]
+  routineLogs       RoutineLog[]
+  conversations     AiConversation[]
+  achievements      UserAchievement[]
+  notifications     Notification[]
+  devices           Device[]
+  featureUsage      FeatureUsage[]
+  analyticsEvents   AnalyticsEvent[]
+  progressSnapshots ProgressSnapshot[]
+
+  @@map("users")
+}
+
+model UserProfile {
+  id              String    @id @default(uuid())
+  userId          String    @unique @map("user_id")
+  age             Int?
+  gender          String?
+  skinType        String?   @map("skin_type")
+  primaryGoal     String?   @map("primary_goal")
+  experienceLevel String?   @map("experience_level")
+  timezone        String?
+  country         String?
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
+
+model SkinScan {
+  id               String     @id @default(uuid())
+  userId           String     @map("user_id")
+  scanDate         DateTime   @map("scan_date")
+  imageUrl         String     @map("image_url")
+  thumbnailUrl     String?    @map("thumbnail_url")
+  status           ScanStatus @default(processing)
+  processingTimeMs Int?       @map("processing_time_ms")
+  deviceModel      String?    @map("device_model")
+  lightingScore    Float?     @map("lighting_score")
+  faceDetected     Boolean?   @map("face_detected")
+  createdAt        DateTime   @default(now()) @map("created_at")
+  deletedAt        DateTime?  @map("deleted_at")
+
+  user        User          @relation(fields: [userId], references: [id])
+  analysis    SkinAnalysis?
+  insight     AiInsight?
+  routineLogs RoutineLog[]
+
+  @@index([userId])
+  @@index([scanDate])
+  @@index([status])
+  @@map("skin_scans")
+}
+
+// Flat per-metric scores are kept for fast chart queries; metricsDetail holds the
+// full nested Gemini response (severity/status per metric per docs/16), which the
+// flat columns alone would lose (docs/19 refinement).
+model SkinAnalysis {
+  id                  String   @id @default(uuid())
+  scanId              String   @unique @map("scan_id")
+  overallScore        Int      @map("overall_score")
+  acneScore           Int      @map("acne_score")
+  hydrationScore      Int      @map("hydration_score")
+  rednessScore        Int      @map("redness_score")
+  textureScore        Int      @map("texture_score")
+  pigmentationScore   Int      @map("pigmentation_score")
+  oilinessScore       Int      @map("oiliness_score")
+  poresScore          Int      @map("pores_score")
+  wrinkleScore        Int      @map("wrinkle_score")
+  darkCircleScore     Int      @map("dark_circle_score")
+  confidenceScore     Float    @map("confidence_score")
+  metricsDetail       Json     @map("metrics_detail")
+  analysisVersion     String   @map("analysis_version")
+  visionModel         String   @map("vision_model")
+  visionPromptVersion String   @map("vision_prompt_version")
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  scan SkinScan @relation(fields: [scanId], references: [id], onDelete: Cascade)
+
+  @@map("skin_analysis")
+}
+
+model AiInsight {
+  id                   String   @id @default(uuid())
+  scanId               String   @unique @map("scan_id")
+  summary              String
+  recommendation       String
+  positiveChanges      String?  @map("positive_changes")
+  attentionNeeded      String?  @map("attention_needed")
+  nextSteps            String?  @map("next_steps")
+  insightPromptVersion String   @map("insight_prompt_version")
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  scan SkinScan @relation(fields: [scanId], references: [id], onDelete: Cascade)
+
+  @@map("ai_insights")
+}
+
+model ProgressSnapshot {
+  id              String   @id @default(uuid())
+  userId          String   @map("user_id")
+  week            Int
+  month           String
+  averageScore    Float    @map("average_score")
+  bestScore       Int      @map("best_score")
+  improvement     Float?
+  hydrationChange Float?   @map("hydration_change")
+  acneChange      Float?   @map("acne_change")
+  rednessChange   Float?   @map("redness_change")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, week])
+  @@index([userId, month])
+  @@map("progress_snapshots")
+}
+
+model Routine {
+  id        String           @id @default(uuid())
+  userId    String           @map("user_id")
+  name      String
+  timeOfDay RoutineTimeOfDay @map("time_of_day")
+  isActive  Boolean          @default(true) @map("is_active")
+  createdAt DateTime         @default(now()) @map("created_at")
+  deletedAt DateTime?        @map("deleted_at")
+
+  user  User          @relation(fields: [userId], references: [id])
+  items RoutineItem[]
+
+  @@map("routines")
+}
+
+model RoutineItem {
+  id           String    @id @default(uuid())
+  routineId    String    @map("routine_id")
+  productName  String    @map("product_name")
+  stepOrder    Int       @map("step_order")
+  productType  String?   @map("product_type")
+  instructions String?
+  // Stored as "HH:mm" (24h, local to the user's timezone) — no portable pure
+  // time-of-day column type across Postgres/Prisma, and reminders are scheduled
+  // client-side against the user's device clock, not compared across timezones.
+  reminderTime String?   @map("reminder_time")
+  isActive     Boolean   @default(true) @map("is_active")
+  deletedAt    DateTime? @map("deleted_at")
+
+  routine     Routine      @relation(fields: [routineId], references: [id], onDelete: Cascade)
+  routineLogs RoutineLog[]
+
+  @@map("routine_items")
+}
+
+model RoutineLog {
+  id            String    @id @default(uuid())
+  routineItemId String    @map("routine_item_id")
+  userId        String    @map("user_id")
+  completed     Boolean   @default(false)
+  completedAt   DateTime? @map("completed_at")
+  scanId        String?   @map("scan_id")
+  // Calendar day this log applies to, independent of completedAt's timestamp — the
+  // unique constraint below is what actually prevents double-logging the same item
+  // twice in a day (docs/19 refinement; docs/04's original schema had no such guard,
+  // which would have silently broken streak calculations).
+  logDate       DateTime  @map("log_date") @db.Date
+
+  routineItem RoutineItem @relation(fields: [routineItemId], references: [id])
+  user        User        @relation(fields: [userId], references: [id])
+  scan        SkinScan?   @relation(fields: [scanId], references: [id])
+
+  @@unique([routineItemId, logDate])
+  @@index([userId])
+  @@index([completedAt])
+  @@map("routine_logs")
+}
+
+model AiConversation {
+  id        String    @id @default(uuid())
+  userId    String    @map("user_id")
+  title     String?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  user     User        @relation(fields: [userId], references: [id])
+  messages AiMessage[]
+
+  @@map("ai_conversations")
+}
+
+model AiMessage {
+  id             String      @id @default(uuid())
+  conversationId String      @map("conversation_id")
+  role           MessageRole
+  message        String
+  tokens         Int?
+  createdAt      DateTime    @default(now()) @map("created_at")
+
+  conversation AiConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId])
+  @@map("ai_messages")
+}
+
+model Achievement {
+  id            String @id @default(uuid())
+  title         String
+  description   String
+  icon          String
+  category      String
+  requiredValue Int    @map("required_value")
+
+  userAchievements UserAchievement[]
+
+  @@map("achievements")
+}
+
+model UserAchievement {
+  id            String   @id @default(uuid())
+  userId        String   @map("user_id")
+  achievementId String   @map("achievement_id")
+  earnedAt      DateTime @default(now()) @map("earned_at")
+
+  user        User        @relation(fields: [userId], references: [id])
+  achievement Achievement @relation(fields: [achievementId], references: [id])
+
+  @@unique([userId, achievementId])
+  @@map("user_achievements")
+}
+
+model Notification {
+  id          String            @id @default(uuid())
+  userId      String            @map("user_id")
+  title       String
+  body        String
+  type        NotificationType
+  scheduledAt DateTime?         @map("scheduled_at")
+  readAt      DateTime?         @map("read_at")
+  createdAt   DateTime          @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, readAt])
+  @@map("notifications")
+}
+
+model Device {
+  id          String         @id @default(uuid())
+  userId      String         @map("user_id")
+  deviceToken String         @unique @map("device_token")
+  platform    DevicePlatform
+  appVersion  String?        @map("app_version")
+  lastActive  DateTime?      @map("last_active")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("devices")
+}
+
+model Subscription {
+  id               String             @id @default(uuid())
+  userId           String             @unique @map("user_id")
+  plan             SubscriptionPlan   @default(free)
+  status           SubscriptionStatus @default(active)
+  purchaseProvider String?            @map("purchase_provider")
+  purchaseId       String?            @map("purchase_id")
+  startDate        DateTime?          @map("start_date")
+  expiryDate       DateTime?          @map("expiry_date")
+  autoRenew        Boolean            @default(false) @map("auto_renew")
+  createdAt        DateTime           @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+model FeatureUsage {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  feature    String
+  usageCount Int      @default(0) @map("usage_count")
+  // "YYYY-MM" — a calendar-month bucket key, not a date. Paired with the unique
+  // constraint below so usage counting can safely upsert per docs/19.
+  month      String
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, feature, month])
+  @@index([userId, feature])
+  @@map("feature_usage")
+}
+
+model UserSettings {
+  id                String  @id @default(uuid())
+  userId            String  @unique @map("user_id")
+  dailyScanReminder Boolean @default(true) @map("daily_scan_reminder")
+  morningReminder   Boolean @default(true) @map("morning_reminder")
+  nightReminder     Boolean @default(true) @map("night_reminder")
+  language          String  @default("en")
+  theme             String  @default("system")
+  timezone          String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_settings")
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(uuid())
+  userId    String?  @map("user_id")
+  eventName String   @map("event_name")
+  eventData Json?    @map("event_data")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([eventName])
+  @@map("analytics_events")
+}
+
+// Prevents duplicate AI analysis on an identical image (docs/04). Not user-scoped —
+// keyed purely by image content hash, since the point is cross-user dedup safety.
+model AnalysisCache {
+  id           String   @id @default(uuid())
+  imageHash    String   @unique @map("image_hash")
+  analysisJson Json     @map("analysis_json")
+  expiresAt    DateTime @map("expires_at")
+
+  @@map("analysis_cache")
+}
