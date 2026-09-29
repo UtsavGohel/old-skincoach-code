@@ -1,0 +1,293 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SkinCoach — Onboarding Step 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#f9faf7",
+                    "on-secondary-container": "#456c61",
+                    "background": "#f9faf7",
+                    "on-primary-fixed-variant": "#214e43",
+                    "inverse-primary": "#a1d0c1",
+                    "surface": "#f9faf7",
+                    "primary-fixed": "#bdeddd",
+                    "outline": "#717975",
+                    "inverse-surface": "#2e3130",
+                    "surface-container": "#edeeec",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e2e3e0",
+                    "on-background": "#1a1c1b",
+                    "on-primary-container": "#f4fffa",
+                    "tertiary-fixed": "#cbe9e0",
+                    "secondary-container": "#c1ecde",
+                    "on-tertiary-fixed-variant": "#314c46",
+                    "inverse-on-surface": "#f0f1ef",
+                    "tertiary-container": "#5f7a73",
+                    "on-tertiary-container": "#f4fffa",
+                    "primary-fixed-dim": "#a1d0c1",
+                    "surface-dim": "#d9dad8",
+                    "on-secondary-fixed-variant": "#274e44",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#c1ecde",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e8e8e6",
+                    "secondary-fixed-dim": "#a6cfc2",
+                    "surface-tint": "#3a675b",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "secondary": "#3f665b",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#1a1c1b",
+                    "surface-container-low": "#f3f4f1",
+                    "tertiary": "#46615b",
+                    "outline-variant": "#c0c8c4",
+                    "on-tertiary-fixed": "#04201b",
+                    "primary": "#386458",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#afcdc5",
+                    "on-primary-fixed": "#002019",
+                    "surface-container-highest": "#e2e3e0",
+                    "on-secondary-fixed": "#002019",
+                    "primary-container": "#507d70",
+                    "on-surface-variant": "#404845"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "container-margin-mobile": "20px",
+                    "section-gap": "48px",
+                    "gutter": "16px",
+                    "container-margin-desktop": "40px",
+                    "card-padding": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Manrope"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FBFAF7; /* Warm Cream Base */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .organic-bg-blur {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            background-color: #386458; /* Primary Sage */
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-fill {
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .wheel-picker {
+            mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(167, 196, 188, 0.3);
+        }
+
+        .glass-input:focus-within {
+            border-color: #386458;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed">
+<!-- Background Ornaments -->
+<div class="organic-bg-blur">
+<div class="blob w-[500px] h-[500px] -top-20 -right-20 animate-pulse"></div>
+<div class="blob w-[400px] h-[400px] -bottom-40 -left-20" style="background-color: #A7C4BC; animation-delay: 2s;"></div>
+</div>
+<!-- Layout Wrapper -->
+<div class="min-h-screen flex flex-col max-w-[1200px] mx-auto px-container-margin-mobile md:px-container-margin-desktop relative">
+<!-- Header Shell -->
+<header class="flex justify-between items-center h-16 w-full sticky top-0 z-50 bg-background/50 backdrop-blur-sm">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-start text-on-surface hover:opacity-60 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<div class="flex-1 max-w-[200px] mx-4">
+<div class="h-[2px] w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary progress-fill" id="progressBar" style="width: 0%;"></div>
+</div>
+<p class="text-center font-label-sm text-label-sm text-outline-variant mt-2 tracking-widest uppercase">Step 1 of 2</p>
+</div>
+<div class="w-10"></div> <!-- Spacer for symmetry -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col pt-8 pb-32">
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center mb-10 fade-in-up" style="animation-delay: 0.1s;">
+<div class="w-48 h-48 mb-8 relative">
+<div class="absolute inset-0 bg-secondary-container/20 rounded-full blur-3xl"></div>
+<div class="relative w-full h-full rounded-3xl overflow-hidden shadow-sm">
+<div class="w-full h-full bg-cover bg-center" data-alt="A premium minimalist organic still life illustration with soft lighting, featuring a single dew-covered sage leaf resting on a smooth white ceramic surface. The aesthetic is clean, luxurious, and peaceful, with a warm cream and soft sage green color palette. The lighting is ethereal and natural, evoking a sense of pure wellness and high-end botanical skincare." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCEVgx2rM5VxGJ0UTzdz_RKVQ63nXts2btaLSMePTecsAQN-130tK42ZSyoChxzSw0XnTdyHnrS99rgUk3bJ65ggtcGCfVQeOX_XS2ZbZB1y6CuKGA1USucL7caCn5IuzLRG6-VC87JnQrZAJZz-1t54s3V3iT0OpPjphX8pyuJjvKg6ILp10yzdICn-rZJxl2ubLj_mcgXJyOJ51KVYY5X11u-QovkZ4wJ_T7CRS0fTsTIdw6BWuv9nw')"></div>
+</div>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary tracking-tight mb-3">
+                    Let's get to know you
+                </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[320px] leading-relaxed">
+                    We'll personalize your skin journey in just a few quick steps.
+                </p>
+</section>
+<!-- Form Sequence -->
+<form class="space-y-10 w-full max-w-[500px] mx-auto">
+<!-- Name Field -->
+<div class="fade-in-up" style="animation-delay: 0.2s;">
+<div class="relative group">
+<input class="peer w-full h-16 px-6 pt-5 glass-input rounded-2xl font-body-md text-on-surface outline-none ring-0 focus:ring-1 focus:ring-primary/20 transition-all placeholder-transparent" id="userName" name="name" placeholder=" " type="text">
+<label class="absolute left-6 top-5 text-on-surface-variant transition-all pointer-events-none peer-placeholder-shown:top-5 peer-placeholder-shown:text-body-md peer-focus:top-2 peer-focus:text-label-sm peer-focus:text-primary not-placeholder-shown:top-2 not-placeholder-shown:text-label-sm" for="userName">
+                            Enter your name
+                        </label>
+</div>
+</div>
+<!-- Age Picker -->
+<div class="fade-in-up flex flex-col items-center" style="animation-delay: 0.3s;">
+<span class="font-label-sm text-label-sm text-outline-variant mb-4 uppercase tracking-widest">Select your age</span>
+<div class="relative w-full h-40 flex justify-center items-center wheel-picker overflow-hidden">
+<div class="flex flex-col items-center space-y-4 overflow-y-scroll snap-y snap-mandatory h-full scroll-smooth w-full py-16 no-scrollbar" id="ageScroll">
+<!-- JS will populate or keep static for this prototype -->
+<div class="snap-center h-12 flex items-center justify-center shrink-0 opacity-20"><span class="font-headline-md text-headline-md">24</span></div>
+<div class="snap-center h-12 flex items-center justify-center shrink-0 opacity-40"><span class="font-headline-md text-headline-md">25</span></div>
+<div class="snap-center h-12 flex items-center justify-center shrink-0 text-primary scale-125 font-bold"><span class="font-headline-lg text-headline-lg">26</span></div>
+<div class="snap-center h-12 flex items-center justify-center shrink-0 opacity-40"><span class="font-headline-md text-headline-md">27</span></div>
+<div class="snap-center h-12 flex items-center justify-center shrink-0 opacity-20"><span class="font-headline-md text-headline-md">28</span></div>
+</div>
+<!-- Picker Indicator Lines -->
+<div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-12 pointer-events-none border-y border-primary/10"></div>
+</div>
+</div>
+<!-- Gender Selection -->
+<div class="fade-in-up space-y-4" style="animation-delay: 0.4s;">
+<span class="block text-center font-label-sm text-label-sm text-outline-variant uppercase tracking-widest">Identify as</span>
+<div class="flex flex-wrap justify-center gap-3">
+<button class="gender-chip px-6 py-3 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant/30 transition-all" type="button">
+                            Female
+                        </button>
+<button class="gender-chip px-6 py-3 rounded-full bg-primary text-white font-label-md text-label-md shadow-md" type="button">
+                            Male
+                        </button>
+<button class="gender-chip px-6 py-3 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant/30 transition-all" type="button">
+                            Non-binary
+                        </button>
+<button class="gender-chip px-6 py-3 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant/30 transition-all" type="button">
+                            Prefer not to say
+                        </button>
+</div>
+</div>
+</form>
+</main>
+<!-- Footer CTA -->
+<footer class="fixed bottom-0 left-0 w-full p-container-margin-mobile md:p-container-margin-desktop bg-gradient-to-t from-background via-background/95 to-transparent pt-12">
+<div class="max-w-[500px] mx-auto">
+<button class="w-full h-14 bg-primary text-on-primary font-label-md text-label-md rounded-3xl shadow-xl shadow-primary/20 hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2 group" type="button">
+                    Continue
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</footer>
+</div>
+<script>
+        // Micro-interactions & Animations
+        window.addEventListener('DOMContentLoaded', () => {
+            // Fill progress bar on load
+            setTimeout(() => {
+                document.getElementById('progressBar').style.width = '50%';
+            }, 300);
+
+            // Gender selection logic
+            const chips = document.querySelectorAll('.gender-chip');
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    chips.forEach(c => {
+                        c.classList.remove('bg-primary', 'text-white', 'shadow-md');
+                        c.classList.add('border', 'border-outline-variant', 'text-on-surface-variant');
+                    });
+                    chip.classList.add('bg-primary', 'text-white', 'shadow-md');
+                    chip.classList.remove('border', 'border-outline-variant', 'text-on-surface-variant');
+                });
+            });
+
+            // Handle Age Scroll Snap micro-interaction (Visual only for prototype)
+            const ageScroll = document.getElementById('ageScroll');
+            ageScroll.addEventListener('scroll', () => {
+                // In a real app, we'd calculate center element and update styling/state here
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SkinCoach — Onboarding Step 2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#edeeec",
+                        "primary-container": "#507d70",
+                        "on-surface-variant": "#404845",
+                        "tertiary-fixed-dim": "#afcdc5",
+                        "surface-variant": "#e2e3e0",
+                        "surface-container-highest": "#e2e3e0",
+                        "primary": "#386458",
+                        "on-secondary-fixed": "#002019",
+                        "tertiary": "#46615b",
+                        "surface-container-high": "#e8e8e6",
+                        "on-primary-fixed": "#002019",
+                        "outline-variant": "#c0c8c4",
+                        "on-tertiary-fixed-variant": "#314c46",
+                        "on-secondary-fixed-variant": "#274e44",
+                        "secondary-fixed-dim": "#a6cfc2",
+                        "on-tertiary-container": "#f4fffa",
+                        "secondary": "#3f665b",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f0f1ef",
+                        "tertiary-fixed": "#cbe9e0",
+                        "surface-container-low": "#f3f4f1",
+                        "surface-bright": "#f9faf7",
+                        "secondary-container": "#c1ecde",
+                        "inverse-surface": "#2e3130",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "primary-fixed": "#bdeddd",
+                        "inverse-primary": "#a1d0c1",
+                        "surface-tint": "#3a675b",
+                        "tertiary-container": "#5f7a73",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#c1ecde",
+                        "primary-fixed-dim": "#a1d0c1",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1a1c1b",
+                        "on-primary-fixed-variant": "#214e43",
+                        "surface-dim": "#d9dad8",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#04201b",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#456c61",
+                        "background": "#f9faf7",
+                        "surface": "#f9faf7",
+                        "outline": "#717975",
+                        "on-primary-container": "#f4fffa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "container-margin-desktop": "40px",
+                        "card-padding": "24px",
+                        "section-gap": "48px",
+                        "gutter": "16px",
+                        "container-margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Manrope"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FBFAF7;
+            color: #1a1c1b;
+            -webkit-font-smoothing: antialiased;
+        }
+        .organic-gradient {
+            background: radial-gradient(circle at 10% 20%, rgba(167, 196, 188, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(193, 236, 222, 0.1) 0%, transparent 40%);
+        }
+        .soft-card-shadow {
+            box-shadow: 0 10px 30px rgba(56, 100, 88, 0.04);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-progress-fill {
+            width: 100%;
+            transition: width 1s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md overflow-x-hidden min-h-screen organic-gradient">
+<!-- Top AppBar (Injected from Shared Components Hierarchy) -->
+<header class="w-full top-0 sticky z-50 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center justify-between px-container-mobile md:px-container-desktop h-16 w-full max-w-[1200px] mx-auto">
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-size: 28px;">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-1">Step 2 of 2</span>
+<div class="w-32 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary step-progress-fill rounded-full"></div>
+</div>
+</div>
+<button class="text-on-surface-variant opacity-0 pointer-events-none">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</header>
+<main class="max-w-[800px] mx-auto px-container-mobile md:px-container-desktop pt-8 pb-40">
+<!-- Hero Section -->
+<section class="mb-section-gap text-center md:text-left">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background mb-3 tracking-tight">
+                Tell us about your skin
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[500px]">
+                We'll personalize your daily AI insights and recommendations based on your unique profile.
+            </p>
+</section>
+<!-- Section 1: Skin Type -->
+<section class="mb-section-gap">
+<h2 class="font-headline-md text-headline-md text-on-background mb-6">What's your skin type?</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<!-- Selection Cards -->
+<button class="group relative flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-2xl border-2 border-transparent transition-all duration-300 soft-card-shadow hover:border-primary-fixed" onclick="toggleSelect(this)">
+<span class="material-symbols-outlined text-primary mb-3" style="font-size: 32px;">face_5</span>
+<span class="font-label-md text-label-md">Normal</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<button class="group relative flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-2xl border-2 border-transparent transition-all duration-300 soft-card-shadow hover:border-primary-fixed" onclick="toggleSelect(this)">
+<span class="material-symbols-outlined text-primary mb-3" style="font-size: 32px;">opacity</span>
+<span class="font-label-md text-label-md">Dry</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<button class="group relative flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-2xl border-2 border-transparent transition-all duration-300 soft-card-shadow hover:border-primary-fixed" onclick="toggleSelect(this)">
+<span class="material-symbols-outlined text-primary mb-3" style="font-size: 32px;">water_drop</span>
+<span class="font-label-md text-label-md">Oily</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<button class="group relative selected flex flex-col items-center justify-center p-6 bg-secondary-container/30 rounded-2xl border-2 border-primary transition-all duration-300 soft-card-shadow" onclick="toggleSelect(this)">
+<span class="material-symbols-outlined text-primary mb-3" style="font-size: 32px;">gradient</span>
+<span class="font-label-md text-label-md">Combination</span>
+<div class="absolute top-2 right-2 opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<button class="group relative flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-2xl border-2 border-transparent transition-all duration-300 soft-card-shadow hover:border-primary-fixed" onclick="toggleSelect(this)">
+<span class="material-symbols-outlined text-primary mb-3" style="font-size: 32px;">spa</span>
+<span class="font-label-md text-label-md">Sensitive</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+<button class="group relative flex flex-col items-center justify-center p-6 bg-surface-container-lowest rounded-2xl border-2 border-transparent transition-all duration-300 soft-card-shadow hover:border-primary-fixed" onclick="toggleSelect(this)">
+<span class="material-symbols-outlined text-primary mb-3" style="font-size: 32px;">help</span>
+<span class="font-label-md text-label-md">Not Sure</span>
+<div class="absolute top-2 right-2 opacity-0 group-[.selected]:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</button>
+</div>
+</section>
+<!-- Section 2: Goals -->
+<section class="mb-section-gap">
+<h2 class="font-headline-md text-headline-md text-on-background mb-6">What's your primary goal?</h2>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary" onclick="toggleChip(this)">Clear Acne</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary" onclick="toggleChip(this)">Reduce Dark Spots</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary selected bg-primary text-white border-primary" onclick="toggleChip(this)">Hydration</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary" onclick="toggleChip(this)">Reduce Redness</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary" onclick="toggleChip(this)">Even Skin Tone</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary selected bg-primary text-white border-primary" onclick="toggleChip(this)">Brightening</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary" onclick="toggleChip(this)">Anti-Aging</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary" onclick="toggleChip(this)">Better Routine</button>
+<button class="px-6 py-3 rounded-full bg-surface-container-lowest border border-outline-variant text-on-surface-variant font-label-md transition-all duration-300 hover:bg-secondary-container/20 [&amp;.selected]:bg-primary [&amp;.selected]:text-white [&amp;.selected]:border-primary" onclick="toggleChip(this)">Overall Healthy Skin</button>
+</div>
+</section>
+<!-- Section 3: Experience -->
+<section class="mb-section-gap">
+<h2 class="font-headline-md text-headline-md text-on-background mb-6">How experienced are you with skincare?</h2>
+<div class="space-y-4">
+<button class="level-card group w-full flex items-center p-5 bg-surface-container-lowest rounded-2xl border-2 border-transparent transition-all duration-300 soft-card-shadow text-left hover:border-primary-fixed" onclick="selectLevel(this)">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 flex items-center justify-center text-primary mr-5">
+<span class="material-symbols-outlined" style="font-size: 24px;">psychology</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-md text-on-background font-bold">Beginner</h3>
+<p class="text-on-surface-variant text-sm">I'm just starting my skincare journey.</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant group-[.selected]:border-primary group-[.selected]:bg-primary flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white opacity-0 group-[.selected]:opacity-100"></div>
+</div>
+</button>
+<button class="level-card group selected w-full flex items-center p-5 bg-secondary-container/30 rounded-2xl border-2 border-primary transition-all duration-300 soft-card-shadow text-left" onclick="selectLevel(this)">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 flex items-center justify-center text-primary mr-5">
+<span class="material-symbols-outlined" style="font-size: 24px;">science</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-md text-on-background font-bold">Intermediate</h3>
+<p class="text-on-surface-variant text-sm">I have a routine but want better results.</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+</button>
+<button class="level-card group w-full flex items-center p-5 bg-surface-container-lowest rounded-2xl border-2 border-transparent transition-all duration-300 soft-card-shadow text-left hover:border-primary-fixed" onclick="selectLevel(this)">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 flex items-center justify-center text-primary mr-5">
+<span class="material-symbols-outlined" style="font-size: 24px;">auto_awesome</span>
+</div>
+<div class="flex-1">
+<h3 class="font-label-md text-on-background font-bold">Advanced</h3>
+<p class="text-on-surface-variant text-sm">I'm well-versed in ingredients and actives.</p>
+</div>
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant group-[.selected]:border-primary group-[.selected]:bg-primary flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-white opacity-0 group-[.selected]:opacity-100"></div>
+</div>
+</button>
+</div>
+</section>
+<!-- Lifestyle Image Detail -->
+<section class="mt-8">
+<div class="w-full h-48 rounded-2xl overflow-hidden relative soft-card-shadow">
+<img class="w-full h-full object-cover" data-alt="Close-up artistic photography of a diverse range of skin textures under soft, natural sunlight coming through a sheer linen curtain. The lighting creates a gentle, ethereal glow on the skin, highlighting its natural beauty and hydration. The color palette is composed of warm creams, soft sage greens, and natural earthy tones, reflecting a premium wellness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYPrdR2VLYp5f5tLBYWpxok0Oi_JlcasY4hsO1MS13BItpvyl_Z5iBe5OFgP0wCJ4h820yBsBTDWb1FERYN5DkU2dN2LFqVQhXCI_nCS_-hVcRdpZAPESo7fSP-XaxHg3dk_f66lIJcvaJ4Pmaoo6DjOunIuBQ24Xul7sPP3umN7-We-6CKVGl5RIO7vcVX8FOby7z2yZP4VgCR5jMFBBmVzJvzkqfce_21txrMaavtm-7g5EAo2Pz0g">
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+<div class="absolute inset-0 flex items-center justify-center p-8 text-center">
+<p class="text-white font-headline-md tracking-tight italic">"Your skin is a reflection of your well-being."</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-0 w-full p-container-mobile md:p-6 bg-surface/80 backdrop-blur-xl z-40">
+<div class="max-w-[600px] mx-auto flex flex-col items-center">
+<button class="w-full h-14 bg-primary text-white font-label-md rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-all duration-200">
+                Start My Skin Journey
+                <span class="material-symbols-outlined ml-2">arrow_forward</span>
+</button>
+<p class="mt-4 font-label-sm text-label-sm text-on-surface-variant text-center opacity-80">
+                Your first AI skin analysis takes less than 30 seconds.
+            </p>
+</div>
+</footer>
+<script>
+        function toggleSelect(el) {
+            // Find all siblings in the grid and remove selected state
+            const siblings = el.parentElement.querySelectorAll('button');
+            siblings.forEach(sib => {
+                sib.classList.remove('selected', 'bg-secondary-container/30', 'border-primary');
+                sib.classList.add('bg-surface-container-lowest', 'border-transparent');
+                const check = sib.querySelector('.absolute');
+                if(check) check.classList.replace('opacity-100', 'opacity-0');
+            });
+
+            // Add selected state to current
+            el.classList.add('selected', 'bg-secondary-container/30', 'border-primary');
+            el.classList.remove('bg-surface-container-lowest', 'border-transparent');
+            const check = el.querySelector('.absolute');
+            if(check) check.classList.replace('opacity-0', 'opacity-100');
+        }
+
+        function toggleChip(el) {
+            el.classList.toggle('selected');
+        }
+
+        function selectLevel(el) {
+            const levels = document.querySelectorAll('.level-card');
+            levels.forEach(lvl => {
+                lvl.classList.remove('selected', 'bg-secondary-container/30', 'border-primary');
+                lvl.classList.add('bg-surface-container-lowest', 'border-transparent');
+                
+                const dotBorder = lvl.querySelector('.w-6');
+                dotBorder.classList.replace('border-primary', 'border-outline-variant');
+                dotBorder.classList.remove('bg-primary');
+
+                const dot = dotBorder.querySelector('div');
+                dot.classList.add('opacity-0');
+            });
+
+            el.classList.add('selected', 'bg-secondary-container/30', 'border-primary');
+            el.classList.remove('bg-surface-container-lowest', 'border-transparent');
+            
+            const dotBorder = el.querySelector('.w-6');
+            dotBorder.classList.replace('border-outline-variant', 'border-primary');
+            dotBorder.classList.add('bg-primary');
+
+            const dot = dotBorder.querySelector('div');
+            dot.classList.remove('opacity-0');
+        }
+    </script>
+</body></html>

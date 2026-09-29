@@ -1,0 +1,403 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SkinCoach Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#314c46",
+                    "on-secondary-fixed": "#002019",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#5f7a73",
+                    "tertiary": "#46615b",
+                    "background": "#f9faf7",
+                    "on-primary-fixed": "#002019",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#a1d0c1",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2e3130",
+                    "secondary-container": "#c1ecde",
+                    "primary": "#386458",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e2e3e0",
+                    "surface-container-high": "#e8e8e6",
+                    "on-surface": "#1a1c1b",
+                    "outline": "#717975",
+                    "surface-tint": "#3a675b",
+                    "surface-container-low": "#f3f4f1",
+                    "on-background": "#1a1c1b",
+                    "tertiary-fixed": "#cbe9e0",
+                    "surface-container-highest": "#e2e3e0",
+                    "tertiary-fixed-dim": "#afcdc5",
+                    "on-surface-variant": "#404845",
+                    "surface-bright": "#f9faf7",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#edeeec",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary": "#3f665b",
+                    "on-secondary-fixed-variant": "#274e44",
+                    "primary-fixed-dim": "#a1d0c1",
+                    "outline-variant": "#c0c8c4",
+                    "primary-container": "#507d70",
+                    "on-secondary-container": "#456c61",
+                    "secondary-fixed-dim": "#a6cfc2",
+                    "secondary-fixed": "#c1ecde",
+                    "on-tertiary-fixed": "#04201b",
+                    "inverse-on-surface": "#f0f1ef",
+                    "on-tertiary-container": "#f4fffa",
+                    "surface": "#f9faf7",
+                    "primary-fixed": "#bdeddd",
+                    "on-primary-container": "#f4fffa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.5rem",
+                    "3xl": "2rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin-mobile": "20px",
+                    "card-padding": "24px",
+                    "container-margin-desktop": "40px",
+                    "section-gap": "48px",
+                    "unit": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-badge {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #386458 0%, #507d70 100%);
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 30px -5px rgba(56, 100, 88, 0.06);
+        }
+        .badge-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .badge-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .animate-count-up {
+            animation: countUp 2s ease-out forwards;
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-28">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-background/80 backdrop-blur-md px-container-margin-mobile h-16 flex justify-between items-center">
+<div class="w-10"></div> <!-- Spacer for centering -->
+<h1 class="text-headline-md font-headline-md font-bold text-primary tracking-tight">Profile</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-margin-mobile space-y-section-gap pt-6">
+<!-- Profile Card -->
+<section class="relative">
+<div class="bg-surface-container-lowest rounded-3xl p-card-padding soft-shadow flex flex-col items-center text-center space-y-4">
+<div class="relative">
+<div class="w-28 h-28 rounded-full border-4 border-secondary-container p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="A high-fidelity portrait of a smiling young man with glowing, healthy skin, set against a softly blurred, warm-toned natural spa environment. The lighting is bright and airy, reflecting a premium skincare brand aesthetic. The color palette includes soft sage greens and warm creams, emphasizing vitality and cleanliness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW6yw-BS1zrkVOBNmX-3G3xsIuKyNQi5fpWgu6DojNFP-nvG9Zlje4A4IlmZ3L2IgF7u-Qu7fmHHVDjo9E7M5aIHHx98i-WBaU-JTk445dpbk5otHMC7qf6fQxE-iknnrNqdojqYQpOaM50UJmyMavjAA_UAs4s5GfsDRg5R7cCAszownmFPA5O79tXD017sRock1RpvWk_BoVy8QKsLMe4f-P2smSfigm4C3VBYIwvoNDAbgnmVzUSg">
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</div>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md font-bold text-on-surface">Utsav</h2>
+<p class="text-label-md text-on-surface-variant">SkinCoach Member Since June 2026</p>
+</div>
+<div class="glass-badge px-4 py-2 rounded-full inline-flex items-center gap-2 border border-primary/10">
+<span class="text-[18px]">🌿</span>
+<span class="text-label-md text-primary font-bold">Consistency Champion</span>
+</div>
+</div>
+</section>
+<!-- Achievement Summary (Bento-ish Grid) -->
+<section class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl soft-shadow animate-count-up" style="animation-delay: 0.1s;">
+<p class="text-[24px] mb-1">🔥</p>
+<h3 class="text-headline-md font-headline-md font-bold text-primary">18</h3>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Days Current Streak</p>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl soft-shadow animate-count-up" style="animation-delay: 0.2s;">
+<p class="text-[24px] mb-1">📷</p>
+<h3 class="text-headline-md font-headline-md font-bold text-primary">62</h3>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Total Scans</p>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl soft-shadow animate-count-up" style="animation-delay: 0.3s;">
+<p class="text-[24px] mb-1">🏆</p>
+<h3 class="text-headline-md font-headline-md font-bold text-primary">91</h3>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Highest Skin Score</p>
+</div>
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl soft-shadow animate-count-up" style="animation-delay: 0.4s;">
+<p class="text-[24px] mb-1">⭐</p>
+<h3 class="text-headline-md font-headline-md font-bold text-primary">94%</h3>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Routine Completion</p>
+</div>
+</section>
+<!-- Achievements Badges -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-body-lg font-bold text-on-surface">Achievements</h3>
+<button class="text-label-md text-primary font-bold">View All</button>
+</div>
+<div class="badge-scroll flex gap-6 overflow-x-auto pb-4 -mx-container-margin-mobile px-container-margin-mobile">
+<div class="flex-shrink-0 flex flex-col items-center space-y-2">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary scale-125" style="font-variation-settings: 'FILL' 1;">camera_alt</span>
+</div>
+<span class="text-label-sm text-on-surface-variant whitespace-nowrap">First Scan</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center space-y-2">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary scale-125" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+</div>
+<span class="text-label-sm text-on-surface-variant whitespace-nowrap">7 Day Streak</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center space-y-2">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary scale-125" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="text-label-sm text-on-surface-variant whitespace-nowrap">30 Day Routine</span>
+</div>
+<!-- Locked Badges -->
+<div class="flex-shrink-0 flex flex-col items-center space-y-2 opacity-40 filter grayscale">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-on-surface-variant scale-125">lock</span>
+</div>
+<span class="text-label-sm text-on-surface-variant whitespace-nowrap">100 Scans</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center space-y-2 opacity-40 filter grayscale">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-on-surface-variant scale-125">military_tech</span>
+</div>
+<span class="text-label-sm text-on-surface-variant whitespace-nowrap">Skin Expert</span>
+</div>
+</div>
+</section>
+<!-- Personal Skin Profile -->
+<section class="space-y-4">
+<h3 class="text-body-lg font-bold text-on-surface">Personal Skin Profile</h3>
+<div class="bg-surface-container-lowest rounded-3xl p-card-padding soft-shadow relative">
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">edit</span>
+</button>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">opacity</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Skin Type</p>
+<p class="text-body-md font-bold text-on-surface">Combination</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">target</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Goal</p>
+<p class="text-body-md font-bold text-on-surface">Brighter Skin</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">stairs</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Level</p>
+<p class="text-body-md font-bold text-on-surface">Intermediate</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Premium Card -->
+<section>
+<div class="premium-gradient rounded-3xl p-8 relative overflow-hidden text-white shadow-xl">
+<!-- Abstract Glow -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-white/20 blur-[50px] rounded-full"></div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary-container/40 blur-[50px] rounded-full"></div>
+<div class="relative z-10 space-y-4">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-headline-md font-headline-md font-bold">SkinCoach Pro</h4>
+<p class="text-body-md opacity-90 mt-1">Unlock your skin's full potential.</p>
+</div>
+<div class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-label-sm font-bold border border-white/30">PREMIUM</div>
+</div>
+<ul class="space-y-3">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-body-md">Unlimited AI Skin Scans</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="text-body-md">Advanced Ingredient Insights</span>
+</li>
+</ul>
+<button class="w-full bg-white text-primary font-bold py-4 rounded-2xl hover:scale-[1.02] transition-transform active:scale-95">
+                        Upgrade Now
+                    </button>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section class="space-y-2">
+<h3 class="text-body-lg font-bold text-on-surface mb-4 px-1">Settings &amp; Support</h3>
+<div class="bg-surface-container-lowest rounded-3xl soft-shadow overflow-hidden">
+<button class="w-full px-6 py-5 flex items-center justify-between border-b border-surface-container-low hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">person_outline</span>
+<span class="text-body-md font-medium text-on-surface">Edit Profile</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<button class="w-full px-6 py-5 flex items-center justify-between border-b border-surface-container-low hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">history_edu</span>
+<span class="text-body-md font-medium text-on-surface">Manage Routine</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<button class="w-full px-6 py-5 flex items-center justify-between border-b border-surface-container-low hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">description</span>
+<span class="text-body-md font-medium text-on-surface">Export Reports</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<button class="w-full px-6 py-5 flex items-center justify-between border-b border-surface-container-low hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">shield</span>
+<span class="text-body-md font-medium text-on-surface">Privacy</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<button class="w-full px-6 py-5 flex items-center justify-between border-b border-surface-container-low hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">notifications</span>
+<span class="text-body-md font-medium text-on-surface">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+<button class="w-full px-6 py-5 flex items-center justify-between hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">subscriptions</span>
+<span class="text-body-md font-medium text-on-surface">Subscription</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="pt-8 pb-12 flex flex-col items-center space-y-6 text-on-surface-variant/60">
+<div class="flex gap-6 text-label-sm font-bold uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+<button class="text-error font-bold flex items-center gap-2 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </button>
+<p class="text-label-sm">SkinCoach v2.4.1 (Stable)</p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest dark:bg-surface-container-low shadow-[0_-10px_30px_rgba(0,0,0,0.04)] flex justify-around items-center px-4 pb-6 pt-3 h-20 rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-label-sm font-label-sm">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined scale-125">photo_camera</span>
+<span class="text-label-sm font-label-sm">Scan</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-60 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-label-sm font-label-sm">Routine</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-label-sm font-label-sm">Profile</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction for count-up numbers
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('h3.text-headline-md');
+            counters.forEach(counter => {
+                const target = parseInt(counter.innerText);
+                let count = 0;
+                const updateCount = () => {
+                    const increment = target / 50;
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count) + (counter.innerText.includes('%') ? '%' : '');
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target + (counter.innerText.includes('%') ? '%' : '');
+                    }
+                };
+                // Minimal observer to trigger when scrolled into view
+                const observer = new IntersectionObserver((entries) => {
+                    if(entries[0].isIntersecting){
+                        updateCount();
+                        observer.unobserve(counter);
+                    }
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            });
+        });
+    </script>
+</body></html>

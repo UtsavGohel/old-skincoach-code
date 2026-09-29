@@ -1,0 +1,346 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>AI Skin Coach - SkinCoach</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "primary": "#386458",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "background": "#f9faf7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#04201b",
+                    "on-secondary-fixed": "#002019",
+                    "secondary-container": "#c1ecde",
+                    "on-secondary-fixed-variant": "#274e44",
+                    "surface-container-high": "#e8e8e6",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#cbe9e0",
+                    "on-tertiary-container": "#f4fffa",
+                    "on-background": "#1a1c1b",
+                    "primary-fixed-dim": "#a1d0c1",
+                    "on-tertiary-fixed-variant": "#314c46",
+                    "on-primary-fixed": "#002019",
+                    "surface-variant": "#e2e3e0",
+                    "on-surface": "#1a1c1b",
+                    "inverse-surface": "#2e3130",
+                    "primary-container": "#507d70",
+                    "primary-fixed": "#bdeddd",
+                    "inverse-primary": "#a1d0c1",
+                    "outline": "#717975",
+                    "on-surface-variant": "#404845",
+                    "tertiary": "#46615b",
+                    "tertiary-container": "#5f7a73",
+                    "on-primary-container": "#f4fffa",
+                    "on-primary-fixed-variant": "#214e43",
+                    "secondary-fixed-dim": "#a6cfc2",
+                    "tertiary-fixed-dim": "#afcdc5",
+                    "on-secondary-container": "#456c61",
+                    "secondary-fixed": "#c1ecde",
+                    "outline-variant": "#c0c8c4",
+                    "surface-tint": "#3a675b",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d9dad8",
+                    "surface-container": "#edeeec",
+                    "inverse-on-surface": "#f0f1ef",
+                    "secondary": "#3f665b",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9faf7",
+                    "surface-container-low": "#f3f4f1",
+                    "surface-bright": "#f9faf7",
+                    "surface-container-highest": "#e2e3e0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "24px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "16px",
+                    "container-margin-mobile": "20px",
+                    "container-margin-desktop": "40px",
+                    "section-gap": "48px",
+                    "card-padding": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9faf7;
+            -webkit-font-smoothing: antialiased;
+            color: #1a1c1b;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-background/80 shadow-[0_10px_30px_rgba(0,0,0,0.04)] flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-16">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high/50 p-2 rounded-full transition-colors active:scale-95 duration-200">menu</button>
+<h1 class="font-display-lg text-headline-md text-primary tracking-tight">AI Skin Coach</h1>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high/50 p-2 rounded-full transition-colors active:scale-95 duration-200">history</button>
+</header>
+<main class="mt-20 px-container-margin-mobile md:px-container-margin-desktop max-w-[1200px] mx-auto space-y-8">
+<!-- Header Subtitle & Context -->
+<div class="animate-fade-in-up">
+<p class="text-on-surface-variant font-body-lg">Personalized insights based on today's scan and your progress.</p>
+</div>
+<!-- Today's Insight (Hero) -->
+<section class="animate-fade-in-up stagger-1">
+<div class="bg-surface-container-lowest rounded-2xl p-card-padding shadow-[0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden relative group">
+<div class="relative z-10 md:w-2/3">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-primary mb-3">✨ Great progress today!</h2>
+<p class="text-on-surface-variant font-body-lg mb-6 leading-relaxed">Your skin appears calmer than last week. Hydration has improved and redness continues to decrease. Keep following your current routine.</p>
+<button class="text-primary font-label-md flex items-center gap-1 hover:gap-2 transition-all group-hover:underline">
+                        Learn Why <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<!-- Abstract Illustration -->
+<div class="absolute top-1/2 -right-4 -translate-y-1/2 w-48 h-48 md:w-64 md:h-64 opacity-80 animate-float">
+<div class="w-full h-full rounded-full bg-secondary-container/40 blur-3xl absolute inset-0"></div>
+<img class="w-full h-full object-contain relative z-10" data-alt="A minimalist, ethereal abstract botanical illustration featuring soft organic shapes like leaves and petals in sage green and cream tones. The style is fluid and serene, with a high-end wellness boutique aesthetic, perfectly matching a warm cream background and digital breathability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKOJ1hA6S53G_Y9kNjCRH6hH7Yoo82tLWzjw_STuoFpgvFCUBKmDTid7YDtme6WTS4IkMDCCvzn3r94oTVdF88m5-U5Je0benJ2FzyJNWEzyzGf6nEql6cB2_vQubwA8YDThUf7ECC4bR-LyrDnww4j4-r_od8YjkPc8u7AndyYYUIgaO8lHZ2zw9Q7PRQT_rfTKlHDiHV1p9yUMSW3nvd-2WWejpI8-V4bmtXnEJL_cbATIWCIe9wDQ">
+</div>
+</div>
+</section>
+<!-- Weekly Summary (Glassmorphism) -->
+<section class="animate-fade-in-up stagger-2">
+<div class="glass-card rounded-2xl p-card-padding border border-white/50">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-primary">Weekly Summary</h3>
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-1 rounded-full text-label-sm">Updated Today</span>
+</div>
+<p class="text-on-surface-variant font-body-md leading-relaxed">
+                    Your <span class="text-primary font-semibold">Skin Score improved by 6 points</span>. Hydration increased significantly. Acne remained stable. Excellent consistency in your PM routine.
+                </p>
+<div class="mt-4 flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<div class="flex flex-col items-center min-w-[80px]">
+<div class="w-12 h-12 rounded-full border-2 border-primary flex items-center justify-center text-primary font-bold">82</div>
+<span class="text-label-sm mt-1">Score</span>
+</div>
+<div class="flex flex-col items-center min-w-[80px]">
+<div class="w-12 h-12 rounded-full border-2 border-secondary-container flex items-center justify-center text-secondary font-bold">75%</div>
+<span class="text-label-sm mt-1">Hydration</span>
+</div>
+<div class="flex flex-col items-center min-w-[80px]">
+<div class="w-12 h-12 rounded-full border-2 border-primary-fixed-dim flex items-center justify-center text-on-surface-variant font-bold">14</div>
+<span class="text-label-sm mt-1">Day Streak</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Ask AI (Search Input & Chips) -->
+<section class="animate-fade-in-up stagger-3 space-y-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-primary">smart_toy</span>
+<input class="w-full h-14 pl-14 pr-6 rounded-full border-outline-variant bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm transition-all text-body-md" placeholder="Ask your Skin Coach..." type="text">
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="bg-surface-container-high/50 hover:bg-secondary-container text-on-surface-variant px-4 py-2 rounded-full text-label-md transition-colors border border-outline-variant/30">Can I use Retinol every day?</button>
+<button class="bg-surface-container-high/50 hover:bg-secondary-container text-on-surface-variant px-4 py-2 rounded-full text-label-md transition-colors border border-outline-variant/30">Why is my skin dry?</button>
+<button class="bg-surface-container-high/50 hover:bg-secondary-container text-on-surface-variant px-4 py-2 rounded-full text-label-md transition-colors border border-outline-variant/30">How do I reduce redness?</button>
+</div>
+</section>
+<!-- Recommended Actions -->
+<section class="animate-fade-in-up stagger-4 space-y-4">
+<h3 class="font-headline-md text-primary">Recommended Actions</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.02)] flex flex-col items-start gap-3 hover:shadow-md transition-shadow cursor-pointer group">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-semibold text-primary">Drink more water today</h4>
+<span class="bg-error-container text-on-error-container text-[10px] uppercase font-bold px-1.5 py-0.5 rounded">High Impact</span>
+</div>
+<p class="text-on-surface-variant text-label-md">Increase hydration from within for clearer skin texture.</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.02)] flex flex-col items-start gap-3 hover:shadow-md transition-shadow cursor-pointer group">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">wb_sunny</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-semibold text-primary">Apply sunscreen</h4>
+<span class="bg-surface-container-high text-on-surface-variant text-[10px] uppercase font-bold px-1.5 py-0.5 rounded">Medium Impact</span>
+</div>
+<p class="text-on-surface-variant text-label-md">UV levels are high this afternoon. Protect your progress.</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-card-padding rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.02)] flex flex-col items-start gap-3 hover:shadow-md transition-shadow cursor-pointer group">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">bedtime</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-semibold text-primary">Aim for 8 hours sleep</h4>
+<span class="bg-error-container text-on-error-container text-[10px] uppercase font-bold px-1.5 py-0.5 rounded">High Impact</span>
+</div>
+<p class="text-on-surface-variant text-label-md">Skin repairs best during deep rest. Sleep is essential.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Learn Section -->
+<section class="animate-fade-in-up stagger-5 space-y-4 overflow-hidden">
+<h3 class="font-headline-md text-primary">Learn</h3>
+<div class="flex gap-4 overflow-x-auto no-scrollbar -mx-container-margin-mobile px-container-margin-mobile pb-4">
+<div class="min-w-[200px] bg-surface-container-low rounded-2xl p-5 group cursor-pointer hover:bg-white transition-colors">
+<div class="h-24 mb-4 flex items-center justify-center">
+<img class="h-full object-contain" data-alt="A minimalist line art illustration representing skin health and acne understanding. Thin, sage green strokes on a clean background showing a stylized microscopic view of healthy skin cells and pores. Sophisticated and clinical but warm." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACV-xWyeiVEafBuE7Ny8qc1Ygk5B2vaoraqfeTfy80Xyuf0CpK1cx8sy51rUTLfJa2tRGAyVTOEFR2T95kBxDmbYk9prS9VPPCGLM5xCfXQhZ2_viVYXuC8UkJjbIlgsTS8p14L1HImS1TZNq127uHOjo6G1lIiMzjkvMB4PJaRAUj7GxnsQ1STJm43seeX9gRGRT7C4rfU5tMua2GiDGg6Wl3eSwK-Ev_hmZZkx61F9EORJRo-2BbNw">
+</div>
+<p class="font-semibold text-primary">Understanding Acne</p>
+<p class="text-label-sm text-on-surface-variant mt-1">5 min read</p>
+</div>
+<div class="min-w-[200px] bg-surface-container-low rounded-2xl p-5 group cursor-pointer hover:bg-white transition-colors">
+<div class="h-24 mb-4 flex items-center justify-center">
+<img class="h-full object-contain" data-alt="A minimalist line art illustration of water droplets and a gentle wave, symbolizing hydration. Thin, elegant lines in a soft mint color against a warm white background. Calm, serene wellness aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4AOycELNdXAdWx08MyI_yyz551dKDm0xsvBzGOOKEGcnuPR8M1ObC_i5_rXKw2F-oTyYdCTQ0WWKQc87IJsG6XxQS5skgLhYpU71ILtp_Jb7iMBTYY9hsvMoGh6j0U8nub452ZypMEsA6O8QkQjwesrN_usOmxuxuTDLfcGZCCf-BAKEhgRpxvM5Hu9aO89ZAjkRRgQI4p1udUXRAPcjFjJZKzpDCt5_GMtLTAJ85y70gsT9RMhAfTw">
+</div>
+<p class="font-semibold text-primary">Hydration Tips</p>
+<p class="text-label-sm text-on-surface-variant mt-1">3 min read</p>
+</div>
+<div class="min-w-[200px] bg-surface-container-low rounded-2xl p-5 group cursor-pointer hover:bg-white transition-colors">
+<div class="h-24 mb-4 flex items-center justify-center">
+<img class="h-full object-contain" data-alt="A minimalist line art illustration of a stylized sun and a protective shield, representing sun protection. Clean, thin strokes in golden sage and cream tones. Modern health and wellness style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0WJu89te696KI7uEzg2A0YgkZ7zlkLGXgfuVuUo0rPUFr-L2ARcBYQQyOkhAPAzbTBaA-hvZBekaCSfXnfU5UNZ1X_dqj2k9Vw_z3Ed3_8r5-rO4Y3HMzL49x7P6gI2msbT80CLubml1p-67RSSwtgiJZxrHlaVWgbSI76Wmk7Tbi9zlDG5_HodpxDf6sDLiOC2FDeEOeaVwhWYJfpFyt7Wlwzszm9DGvDCbyTUsZbgYBx1QtaCj6eQ">
+</div>
+<p class="font-semibold text-primary">Sun Protection</p>
+<p class="text-label-sm text-on-surface-variant mt-1">4 min read</p>
+</div>
+</div>
+</section>
+<!-- Motivation Card -->
+<section class="animate-fade-in-up stagger-5 pb-12">
+<div class="bg-secondary-container/30 border border-secondary-container rounded-2xl p-4 text-center">
+<p class="text-on-secondary-fixed-variant font-label-md italic">
+                    🌿 You're building healthy skin habits. Consistency matters more than perfection.
+                </p>
+</div>
+</section>
+</main>
+<!-- Bottom CTA Button (Fixed) -->
+<div class="fixed bottom-24 left-0 w-full px-container-margin-mobile flex justify-center z-40">
+<button class="w-full max-w-md h-14 bg-primary text-on-primary rounded-full font-headline-md shadow-lg active:scale-95 transition-transform">
+            Update My Routine
+        </button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl backdrop-blur-lg bg-surface-container-lowest/90 border-t border-outline-variant/30 shadow-[0_-10px_30px_rgba(0,0,0,0.04)] flex justify-around items-center h-20 pb-safe px-4">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1.5 hover:bg-surface-container-high transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1">face_retouching_natural</span>
+<span class="font-label-md text-label-md">Analysis</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1.5 hover:bg-surface-container-high transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1">spa</span>
+<span class="font-label-md text-label-md">Routine</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1.5 active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-label-md text-label-md">Coach</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-1.5 hover:bg-surface-container-high transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for chips
+        document.querySelectorAll('button.rounded-full').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.add('scale-95');
+                setTimeout(() => btn.classList.remove('scale-95'), 100);
+            });
+        });
+
+        // Simple observer to trigger animations on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-fade-in-up').forEach(el => observer.observe(el));
+    </script>
+</body></html>

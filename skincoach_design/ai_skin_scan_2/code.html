@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Daily Skin Scan | SkinCoach</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#002019",
+                    "surface-tint": "#3a675b",
+                    "surface-container": "#edeeec",
+                    "outline-variant": "#c0c8c4",
+                    "secondary-fixed-dim": "#a6cfc2",
+                    "tertiary-container": "#5f7a73",
+                    "surface-container-low": "#f3f4f1",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#c1ecde",
+                    "primary-fixed-dim": "#a1d0c1",
+                    "primary-fixed": "#bdeddd",
+                    "surface": "#f9faf7",
+                    "surface-variant": "#e2e3e0",
+                    "on-surface": "#1a1c1b",
+                    "on-primary-fixed": "#002019",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#46615b",
+                    "on-secondary-container": "#456c61",
+                    "on-tertiary-fixed": "#04201b",
+                    "surface-bright": "#f9faf7",
+                    "secondary-fixed": "#c1ecde",
+                    "primary-container": "#507d70",
+                    "on-tertiary-container": "#f4fffa",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1a1c1b",
+                    "surface-container-highest": "#e2e3e0",
+                    "inverse-on-surface": "#f0f1ef",
+                    "background": "#f9faf7",
+                    "outline": "#717975",
+                    "on-surface-variant": "#404845",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#afcdc5",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d9dad8",
+                    "on-tertiary-fixed-variant": "#314c46",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#f4fffa",
+                    "on-secondary-fixed-variant": "#274e44",
+                    "on-primary-fixed-variant": "#214e43",
+                    "inverse-surface": "#2e3130",
+                    "tertiary-fixed": "#cbe9e0",
+                    "inverse-primary": "#a1d0c1",
+                    "secondary": "#3f665b",
+                    "primary": "#386458",
+                    "surface-container-high": "#e8e8e6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "16px",
+                    "container-margin-mobile": "20px",
+                    "card-padding": "24px",
+                    "section-gap": "48px",
+                    "container-margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Manrope"],
+                    "label-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}]
+            },
+            "animation": {
+                "fade-in": "fadeIn 0.6s ease-out forwards",
+                "pulse-soft": "pulseSoft 2s infinite ease-in-out"
+            },
+            "keyframes": {
+                "fadeIn": {
+                    "0%": { opacity: "0", transform: "translateY(10px)" },
+                    "100%": { opacity: "1", transform: "translateY(0)" }
+                },
+                "pulseSoft": {
+                    "0%, 100%": { transform: "scale(1)", boxShadow: "0 0 0 0px rgba(161, 208, 193, 0.4)" },
+                    "50%": { transform: "scale(1.05)", boxShadow: "0 0 0 12px rgba(161, 208, 193, 0)" }
+                }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .floating-tip-transition {
+            animation: slide-up-fade 4s infinite ease-in-out;
+        }
+
+        @keyframes slide-up-fade {
+            0%, 100% { opacity: 0; transform: translateY(10px); }
+            20%, 80% { opacity: 1; transform: translateY(0); }
+        }
+
+        .shutter-active:active {
+            transform: scale(0.92);
+            transition: transform 0.1s ease;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background overflow-hidden h-screen w-full select-none">
+<!-- Full Screen Camera Preview Mockup -->
+<div class="fixed inset-0 z-0 bg-neutral-900">
+<div class="w-full h-full relative" data-alt="A cinematic, high-resolution portrait perspective shot of a woman with radiant, healthy skin in soft, warm morning sunlight. The lighting is ethereal and natural, highlighting skin texture without being clinical. The background is a softly blurred, high-end minimalist bathroom with Sage Green and Cream accents.">
+<img alt="Camera preview simulation" class="w-full h-full object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnHEbkuBznn-09Nl_Ts2ILVzxFln7iGn3PVxZ-A87LS7Y55EbvqKRdbPjHQM4yvvp9QkGjI4Qc4XuJBTsPurIWNWkic5qfltukqwC3SC2VScMx17I78LOQuhXmFBTFh9fyPEL80vdw5VpUF7wmnpaca408FlMdAT2InlqEllBdM-t8anZBUEHKiTK-RRhMyfneRmkvm5VK7UrPg3BdsVqO_dAHz0s1v7zj1hhQzN0GI9BP5ROBLQhhNg">
+<!-- Darker overlay for better UI contrast -->
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+</div>
+<!-- UI Overlay Layer -->
+<div class="relative z-10 flex flex-col h-screen animate-fade-in">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center w-full px-container-margin-mobile h-16 pt-4">
+<button class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h1 class="text-white font-headline-md text-headline-md tracking-tight">Daily Skin Scan</h1>
+<button class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">help</span>
+</button>
+</header>
+<!-- Quality Indicators -->
+<section class="w-full px-container-margin-mobile mt-6">
+<div class="glass backdrop-blur-xl rounded-xl p-3 flex justify-between items-center max-w-md mx-auto">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed shadow-[0_0_8px_rgba(161,208,193,0.8)]"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-white/60 font-bold">Lighting</span>
+<span class="text-label-md text-white">Good</span>
+</div>
+</div>
+<div class="h-8 w-px bg-white/20"></div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed shadow-[0_0_8px_rgba(161,208,193,0.8)]"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-white/60 font-bold">Position</span>
+<span class="text-label-md text-white">Perfect</span>
+</div>
+</div>
+<div class="h-8 w-px bg-white/20"></div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed shadow-[0_0_8px_rgba(161,208,193,0.8)]"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-wider text-white/60 font-bold">Distance</span>
+<span class="text-label-md text-white">Ideal</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Center Guide -->
+<main class="flex-grow flex items-center justify-center relative">
+<div class="w-full h-full flex items-center justify-center px-8">
+                <!-- STITCH_SVG_START:ANIMATION_38 class="" --><div id="animated-svg-ANIMATION_38" class="" style="display:block;width:100%;height:100%;min-height:200px;"><animated-svg viewbox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Face Outline -->
+  <path d="M200 50C120 50 70 110 70 200C70 310 120 450 200 450C280 450 330 310 330 200C330 110 280 50 200 50Z" stroke="#5e8b7e" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10">
+    <animate attributename="stroke-opacity" values="0.4;1;0.4" dur="3s" repeatcount="indefinite">
+    <animatetransform attributename="transform" type="scale" values="1;1.02;1" dur="3s" repeatcount="indefinite" additive="sum" pivot="200 250">
+  </animatetransform></animate></path>
+  
+  <!-- Subtle Glow -->
+  <path d="M200 50C120 50 70 110 70 200C70 310 120 450 200 450C280 450 330 310 330 200C330 110 280 50 200 50Z" stroke="#5e8b7e" stroke-width="8" stroke-opacity="0.2" filter="blur(4px)">
+    <animate attributename="stroke-opacity" values="0.1;0.3;0.1" dur="3s" repeatcount="indefinite">
+  </animate></path>
+</animated-svg></div><!-- STITCH_SVG_END:ANIMATION_38 -->
+            </div>
+</main>
+<!-- Footer Controls -->
+<footer class="pb-12 px-container-margin-mobile flex flex-col items-center">
+<!-- Rotating Tip -->
+<div class="mb-8 floating-tip-transition">
+<div class="glass px-4 py-2 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-sm">lightbulb</span>
+<p class="text-white text-label-md font-medium">Natural daylight gives the best results.</p>
+</div>
+</div>
+<!-- Capture Row -->
+<div class="flex items-center justify-center gap-12 w-full">
+<!-- Gallery Button -->
+<button class="w-14 h-14 glass rounded-full flex items-center justify-center text-white shutter-active">
+<span class="material-symbols-outlined">photo_library</span>
+</button>
+<!-- Shutter Button -->
+<button class="relative group shutter-active animate-pulse-soft rounded-full">
+<div class="w-24 h-24 rounded-full border-4 border-white flex items-center justify-center p-1 bg-transparent">
+<div class="w-full h-full rounded-full bg-primary-fixed shadow-[0_0_20px_rgba(161,208,193,0.4)] group-hover:scale-95 transition-transform"></div>
+</div>
+<div class="fixed inset-0 bg-white opacity-0 pointer-events-none transition-opacity duration-75" id="shutter-flash"></div>
+</button>
+<!-- Flip Camera Button -->
+<button class="w-14 h-14 glass rounded-full flex items-center justify-center text-white shutter-active">
+<span class="material-symbols-outlined">flip_camera_ios</span>
+</button>
+</div>
+</footer>
+</div>
+<script>
+        // Update SVG classes as requested
+        window.addEventListener('DOMContentLoaded', () => {
+            const svg = document.querySelector('animated-svg');
+            if (svg) {
+                svg.setAttribute('class', 'w-full h-full max-w-[320px] mx-auto pointer-events-none');
+            }
+        });
+
+        document.querySelector('.group').addEventListener('click', function() {
+            const flash = document.getElementById('shutter-flash');
+            flash.classList.remove('opacity-0');
+            flash.classList.add('opacity-40');
+            
+            setTimeout(() => {
+                flash.classList.remove('opacity-40');
+                flash.classList.add('opacity-0');
+            }, 100);
+            console.log("Skin Scan Captured");
+        });
+
+        // Tip rotation simulation
+        const tips = [
+            "Natural daylight gives the best results.",
+            "Remove glasses for better eye area analysis.",
+            "Pull back your hair to expose your forehead.",
+            "Keep a neutral expression for consistency."
+        ];
+        let tipIndex = 0;
+        const tipContainer = document.querySelector('.floating-tip-transition p');
+        
+        setInterval(() => {
+            tipIndex = (tipIndex + 1) % tips.length;
+            tipContainer.parentElement.style.opacity = '0';
+            setTimeout(() => {
+                tipContainer.textContent = tips[tipIndex];
+                tipContainer.parentElement.style.opacity = '1';
+            }, 500);
+        }, 5000);
+    </script>
+</body></html>

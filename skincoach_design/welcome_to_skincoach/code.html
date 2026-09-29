@@ -1,0 +1,225 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Welcome to SkinCoach</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Manrope:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#507d70",
+                    "on-secondary-container": "#456c61",
+                    "on-tertiary-fixed": "#04201b",
+                    "secondary-fixed-dim": "#a6cfc2",
+                    "secondary-fixed": "#c1ecde",
+                    "primary-fixed-dim": "#a1d0c1",
+                    "outline-variant": "#c0c8c4",
+                    "on-primary-container": "#f4fffa",
+                    "primary-fixed": "#bdeddd",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f0f1ef",
+                    "surface": "#f9faf7",
+                    "on-tertiary-container": "#f4fffa",
+                    "surface-container": "#edeeec",
+                    "surface-bright": "#f9faf7",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d9dad8",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e2e3e0",
+                    "tertiary-fixed": "#cbe9e0",
+                    "tertiary-fixed-dim": "#afcdc5",
+                    "on-surface-variant": "#404845",
+                    "secondary": "#3f665b",
+                    "on-secondary-fixed-variant": "#274e44",
+                    "on-primary-fixed-variant": "#214e43",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e8e8e6",
+                    "surface-variant": "#e2e3e0",
+                    "on-surface": "#1a1c1b",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#c1ecde",
+                    "primary": "#386458",
+                    "surface-tint": "#3a675b",
+                    "surface-container-low": "#f3f4f1",
+                    "on-background": "#1a1c1b",
+                    "outline": "#717975",
+                    "tertiary-container": "#5f7a73",
+                    "background": "#f9faf7",
+                    "tertiary": "#46615b",
+                    "on-tertiary-fixed-variant": "#314c46",
+                    "on-secondary-fixed": "#002019",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2e3130",
+                    "on-primary-fixed": "#002019",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#a1d0c1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "16px",
+                    "container-margin-desktop": "40px",
+                    "section-gap": "48px",
+                    "container-margin-mobile": "20px",
+                    "card-padding": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Manrope"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slowScale {
+            from { transform: scale(1.05); }
+            to { transform: scale(1.0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .animate-fade-up { animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; }
+        .animate-slow-scale { animation: slowScale 3s ease-out forwards; }
+        .animate-fade-in { animation: fadeIn 1.2s ease-out forwards; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-700 { animation-delay: 700ms; }
+        .delay-900 { animation-delay: 900ms; }
+        .delay-1100 { animation-delay: 1100ms; }
+        .delay-1300 { animation-delay: 1300ms; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, transparent 60%, #FBFAF7 100%);
+        }
+
+        .organic-blob {
+            filter: blur(80px);
+            opacity: 0.15;
+            background-color: #386458;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen selection:bg-secondary-container overflow-x-hidden font-body-md">
+<!-- Subtle Organic Background Decor -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden animate-fade-in">
+<div class="organic-blob w-96 h-96 -top-20 -left-20"></div>
+<div class="organic-blob w-[500px] h-[500px] top-1/2 -right-40 opacity-[0.08]"></div>
+</div>
+<!-- Main Content Wrapper -->
+<div class="relative flex flex-col min-h-screen">
+<!-- Hero Section -->
+<div class="relative w-full h-[55vh] md:h-[60vh] overflow-hidden">
+<div class="absolute inset-0 animate-slow-scale">
+<img alt="Woman smiling in natural light reflecting skin wellness" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtRLK8Q7Hp_3U5dpcMykCtCkNGD8lvmyiJHM3UkDJkFGvsMienI-l-mo5_cFZxGX5kK5sY6J_Oa0xEmW_QjLr45rQVwwzKomufgud8-jLzzv0Bp5FOotYepPbkcih0fdb1i5m9IHjaekkWWhfbENaTI-YZFen_9ybEQP8D8ec4DgIL7hzgORHK_HZZY7DLFZozXrZLZXaheSUMSflp6iLv6qRUkZix_JbuWEITJ0QIbsJ0mGKIpSF7pw">
+</div>
+<!-- Gradient Overlay for smooth blending -->
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<!-- Content Canvas -->
+<main class="flex-grow flex flex-col items-center px-container-margin-mobile md:px-container-margin-desktop -mt-16 md:-mt-24 z-10 text-center">
+<!-- Headline & Subtitle -->
+<div class="max-w-md">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface leading-tight mb-4 animate-fade-up delay-300">
+                    Better Skin.<br>Every Day.
+                </h1>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-80 mb-10 md:mb-12 animate-fade-up delay-500 max-w-[280px] mx-auto">
+                    Track your skin's journey with AI and build healthy habits that last.
+                </p>
+</div>
+<!-- CTA Section -->
+<div class="w-full max-w-sm space-y-6 mb-16">
+<button class="w-full h-[56px] bg-primary text-on-primary rounded-[24px] font-label-md text-label-md shadow-[0_10px_30px_rgba(56,100,88,0.2)] hover:opacity-90 active:scale-95 transition-all animate-fade-up delay-700">
+                    Start Your Journey
+                </button>
+<button class="w-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors animate-fade-up delay-900">
+                    Already have an account? <span class="text-primary font-bold">Log In</span>
+</button>
+</div>
+<!-- Feature Highlights (Bento-inspired minimal layout) -->
+<div class="w-full max-w-lg grid grid-cols-3 gap-4 pb-12">
+<!-- Scan -->
+<div class="flex flex-col items-center animate-fade-up delay-1100">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mb-3 text-secondary">
+<span class="material-symbols-outlined text-[24px]">photo_camera</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] uppercase tracking-widest leading-tight">Daily AI<br>Skin Scan</span>
+</div>
+<!-- Track -->
+<div class="flex flex-col items-center animate-fade-up delay-1300">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mb-3 text-secondary">
+<span class="material-symbols-outlined text-[24px]">analytics</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] uppercase tracking-widest leading-tight">Track<br>Progress</span>
+</div>
+<!-- Coach -->
+<div class="flex flex-col items-center animate-fade-up delay-[1500ms]">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mb-3 text-secondary">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px] uppercase tracking-widest leading-tight">Personal<br>Skin Coach</span>
+</div>
+</div>
+</main>
+</div>
+<!-- Small footer element for extra polish -->
+<footer class="absolute bottom-6 w-full text-center pointer-events-none">
+<div class="flex items-center justify-center gap-2 opacity-30">
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-outline-variant"></div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the primary button
+        const mainBtn = document.querySelector('button');
+        mainBtn.addEventListener('mouseenter', () => {
+            mainBtn.style.transform = 'translateY(-2px)';
+        });
+        mainBtn.addEventListener('mouseleave', () => {
+            mainBtn.style.transform = 'translateY(0)';
+        });
+    </script>
+</body></html>
