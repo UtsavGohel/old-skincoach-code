@@ -1,0 +1,1 @@
+export { BeforeAfterScreen } from './BeforeAfterScreen';
